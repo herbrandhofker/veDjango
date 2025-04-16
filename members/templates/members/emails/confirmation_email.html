@@ -1,0 +1,66 @@
+
+<!-- members/templates/members/emails/confirmation_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VerlichteEnergie</h1>
+        </div>
+        <div class="content">
+            <h2>Bevestig uw e-mailadres</h2>
+            <p>Beste {{ member.name }},</p>
+            <p>Bedankt voor uw aanmelding bij VerlichteEnergie. Om uw registratie te voltooien, vragen wij u om uw e-mailadres te bevestigen door op onderstaande knop te klikken:</p>
+            <p style="text-align: center;">
+                <a href="{{ confirmation_url }}" class="button">E-mailadres bevestigen</a>
+            </p>
+            <p>Of kopieer deze link naar uw browser: <br>{{ confirmation_url }}</p>
+            <p>Deze link is 7 dagen geldig.</p>
+            <p>Na bevestiging van uw e-mailadres ontvangt u instructies over hoe u verder kunt gaan met het koppelen van uw Tibber-account.</p>
+            <p>Met vriendelijke groet,<br>Het team van VerlichteEnergie</p>
+        </div>
+        <div class="footer">
+            <p>U ontvangt deze e-mail omdat u zich heeft aangemeld bij VerlichteEnergie.</p>
+            <p>&copy; 2025 VerlichteEnergie - Alle rechten voorbehouden</p>
+        </div>
+    </div>
+</body>
+</html>

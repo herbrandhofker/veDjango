@@ -1,3 +1,4 @@
+<!-- members/templates/members/test_form.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,24 +7,82 @@
 <body>
     <h1>Test Aanmeldformulier</h1>
     <form id="testForm">
-        {% csrf_token %}  <!-- Dit voegt het CSRF token toe -->
+        {% csrf_token %}
         <div>
-            <label for="email">Email:</label>
+            <label for="email">Email *:</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div>
-            <label for="name">Naam:</label>
+            <label for="name">Naam *:</label>
             <input type="text" id="name" name="name" required>
         </div>
         <div>
-            <label for="property_type">Type woning:</label>
+            <label for="street">Straat *:</label>
+            <input type="text" id="street" name="street" required>
+        </div>
+        <div>
+            <label for="house_number">Huisnummer *:</label>
+            <input type="text" id="house_number" name="house_number" required>
+        </div>
+        <div>
+            <label for="postal_code">Postcode *:</label>
+            <input type="text" id="postal_code" name="postal_code" required placeholder="1234 AB">
+        </div>
+        <div>
+            <label for="city">Plaats *:</label>
+            <input type="text" id="city" name="city" required value="Lelystad">
+        </div>
+        <div>
+            <label for="phone">Telefoonnummer:</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        <div>
+            <label for="property_type">Type woning/gebouw *:</label>
             <select id="property_type" name="property_type" required>
                 <option value="huurwoning">Huurwoning</option>
                 <option value="koopwoning">Koopwoning</option>
                 <option value="kantoor">Kantoor</option>
+                <option value="koepel">Koepel</option>
+                <option value="tm-centrum">TM-centrum</option>
+                <option value="anders">Anders</option>
             </select>
         </div>
-        <button type="submit">Verstuur</button>
+        
+        <div>
+            <label>Interesse in *:</label>
+            <div>
+                <input type="checkbox" id="interest_solar" name="interest_solar">
+                <label for="interest_solar">Zonnepanelen</label>
+            </div>
+            <div>
+                <input type="checkbox" id="interest_battery" name="interest_battery">
+                <label for="interest_battery">Batterijopslag</label>
+            </div>
+            <div>
+                <input type="checkbox" id="interest_sharing" name="interest_sharing">
+                <label for="interest_sharing">Energiedeling</label>
+            </div>
+            <div>
+                <input type="checkbox" id="interest_charger" name="interest_charger">
+                <label for="interest_charger">Gedeelde laadpalen</label>
+            </div>
+            <div>
+                <input type="checkbox" id="interest_info_only" name="interest_info_only">
+                <label for="interest_info_only">Alleen informatie</label>
+            </div>
+        </div>
+        
+        <div>
+            <label for="comments">Opmerkingen:</label>
+            <textarea id="comments" name="comments"></textarea>
+        </div>
+        
+        <div>
+            <input type="checkbox" id="newsletter" name="newsletter">
+            <label for="newsletter">Ik wil de nieuwsbrief ontvangen</label>
+        </div>
+        
+        <button type="submit">Aanmelden</button>
     </form>
 
     <div id="response" style="margin-top: 20px;"></div>
@@ -35,17 +94,25 @@
             const formData = {
                 email: document.getElementById("email").value,
                 name: document.getElementById("name").value,
+                street: document.getElementById("street").value,
+                house_number: document.getElementById("house_number").value,
+                postal_code: document.getElementById("postal_code").value,
+                city: document.getElementById("city").value,
+                phone: document.getElementById("phone").value,
                 property_type: document.getElementById("property_type").value,
-                street: "Teststraat",
-                house_number: "123",
-                postal_code: "1234 AB",
-                city: "Lelystad"
+                interest_solar: document.getElementById("interest_solar").checked,
+                interest_battery: document.getElementById("interest_battery").checked,
+                interest_sharing: document.getElementById("interest_sharing").checked,
+                interest_charger: document.getElementById("interest_charger").checked,
+                interest_info_only: document.getElementById("interest_info_only").checked,
+                comments: document.getElementById("comments").value,
+                newsletter: document.getElementById("newsletter").checked
             };
             
             // Haal het CSRF token op uit het formulier
             const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             
-            fetch('/api/members/', {
+            fetch('/api/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,10 +124,35 @@
             .then(data => {
                 document.getElementById("response").innerHTML = 
                     `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                
+                if (data.status === 'success') {
+                    document.getElementById("response").innerHTML = 
+                        `<div style="background-color: #dff0d8; padding: 15px; border-radius: 5px; color: #3c763d;">
+                            <h3>Aanmelding succesvol!</h3>
+                            <p>${data.message}</p>
+                        </div>`;
+                    document.getElementById("testForm").reset();
+                } else {
+                    let errorMessages = '';
+                    if (data.errors) {
+                        for (const field in data.errors) {
+                            errorMessages += `<p><strong>${field}:</strong> ${data.errors[field]}</p>`;
+                        }
+                    }
+                    
+                    document.getElementById("response").innerHTML = 
+                        `<div style="background-color: #f2dede; padding: 15px; border-radius: 5px; color: #a94442;">
+                            <h3>Fout bij aanmelding</h3>
+                            ${errorMessages || '<p>' + data.message + '</p>'}
+                        </div>`;
+                }
             })
             .catch(error => {
                 document.getElementById("response").innerHTML = 
-                    `<p style="color: red;">Fout: ${error}</p>`;
+                    `<div style="background-color: #f2dede; padding: 15px; border-radius: 5px; color: #a94442;">
+                        <h3>Er is een fout opgetreden</h3>
+                        <p>${error}</p>
+                    </div>`;
             });
         });
     </script>

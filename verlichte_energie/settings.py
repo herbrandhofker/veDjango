@@ -145,3 +145,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# verlichte_energie/settings.py
+
+# Voor testdoeleinden, gebruik de console backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Voor productie, gebruik SMTP
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'jouw_email@example.com'
+# EMAIL_HOST_PASSWORD = 'jouw_wachtwoord'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'VerlichteEnergie <noreply@verlichte-energie.nl>'
+
+# verlichte_energie/settings.py
+# Voeg toe onderaan het bestand
+DEFAULT_FROM_EMAIL = 'VerlichteEnergie <noreply@verlichte-energie.nl>'
