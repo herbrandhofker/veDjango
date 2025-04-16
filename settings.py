@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -17,6 +24,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.SecurityHeadersMiddleware',
 ]
 
 ROOT_URLCONF = 'veDjango.urls'
@@ -69,8 +77,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'website' / 'static',
     BASE_DIR / 'members' / 'static',
