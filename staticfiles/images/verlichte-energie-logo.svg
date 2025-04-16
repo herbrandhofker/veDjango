@@ -1,0 +1,96 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cirkelachtergrond -->
+  <circle cx="150" cy="150" r="140" fill="#e8f5e9"/>
+  
+  <!-- Hoofdcirkel -->
+  <circle cx="150" cy="150" r="120" fill="#4CAF50" fill-opacity="0.8"/>
+  
+  <!-- Zon/licht element -->
+  <circle cx="150" cy="150" r="60" fill="#FFC107"/>
+  
+  <!-- Zonnestralen -->
+  <g stroke="#FFC107" stroke-width="6">
+    <!-- 8 zonnestralen -->
+    <line x1="150" y1="70" x2="150" y2="30" stroke-linecap="round"/>
+    <line x1="150" y1="230" x2="150" y2="270" stroke-linecap="round"/>
+    <line x1="70" y1="150" x2="30" y2="150" stroke-linecap="round"/>
+    <line x1="230" y1="150" x2="270" y2="150" stroke-linecap="round"/>
+    <line x1="95" y1="95" x2="65" y2="65" stroke-linecap="round"/>
+    <line x1="205" y1="205" x2="235" y2="235" stroke-linecap="round"/>
+    <line x1="95" y1="205" x2="65" y2="235" stroke-linecap="round"/>
+    <line x1="205" y1="95" x2="235" y2="65" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Zonnepanelen gestileerde elementen -->
+  <g fill="#1E88E5" stroke="#0D47A1" stroke-width="1">
+    <rect x="120" y="134" width="60" height="32" rx="2"/>
+    <line x1="140" y1="134" x2="140" y2="166" stroke="#0D47A1" stroke-width="1"/>
+    <line x1="160" y1="134" x2="160" y2="166" stroke="#0D47A1" stroke-width="1"/>
+    <line x1="120" y1="144" x2="180" y2="144" stroke="#0D47A1" stroke-width="1"/>
+    <line x1="120" y1="156" x2="180" y2="156" stroke="#0D47A1" stroke-width="1"/>
+  </g>
+  
+  <!-- Verbindingslijnen - symboliseren gemeenschap en energiedeling -->
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="0,12" stroke-dashoffset="6">
+    <circle cx="150" cy="150" r="90" fill="none"/>
+  </g>
+  
+  <!-- Verbeterde huizen rond de rand (gemeenschap) -->
+  <g fill="#FFFFFF" stroke="#4CAF50" stroke-width="0.5">
+    <!-- Huis links -->
+    <g transform="translate(60, 150) scale(0.8) rotate(-90)">
+      <!-- Basis van het huis -->
+      <rect x="-12" y="0" width="24" height="16" />
+      <!-- Dak -->
+      <polygon points="-15,-2 0,-15 15,-2"/>
+      <!-- Deur -->
+      <rect x="-3" y="10" width="6" height="6" />
+      <!-- Raam -->
+      <rect x="-9" y="4" width="4" height="4" />
+      <rect x="5" y="4" width="4" height="4" />
+    </g>
+    
+    <!-- Huis rechts -->
+    <g transform="translate(240, 150) scale(0.8) rotate(90)">
+      <!-- Basis van het huis -->
+      <rect x="-12" y="0" width="24" height="16" />
+      <!-- Dak -->
+      <polygon points="-15,-2 0,-15 15,-2"/>
+      <!-- Deur -->
+      <rect x="-3" y="10" width="6" height="6" />
+      <!-- Raam -->
+      <rect x="-9" y="4" width="4" height="4" />
+      <rect x="5" y="4" width="4" height="4" />
+    </g>
+    
+    <!-- Huis boven -->
+    <g transform="translate(150, 60) scale(0.8)">
+      <!-- Basis van het huis -->
+      <rect x="-12" y="0" width="24" height="16" />
+      <!-- Dak -->
+      <polygon points="-15,-2 0,-15 15,-2"/>
+      <!-- Deur -->
+      <rect x="-3" y="10" width="6" height="6" />
+      <!-- Raam -->
+      <rect x="-9" y="4" width="4" height="4" />
+      <rect x="5" y="4" width="4" height="4" />
+    </g>
+    
+    <!-- Huis onder -->
+    <g transform="translate(150, 240) scale(0.8) rotate(180)">
+      <!-- Basis van het huis -->
+      <rect x="-12" y="0" width="24" height="16" />
+      <!-- Dak -->
+      <polygon points="-15,-2 0,-15 15,-2"/>
+      <!-- Deur -->
+      <rect x="-3" y="10" width="6" height="6" />
+      <!-- Raam -->
+      <rect x="-9" y="4" width="4" height="4" />
+      <rect x="5" y="4" width="4" height="4" />
+    </g>
+  </g>
+  
+  <!-- Bliksemschicht in het midden (energie) -->
+  <path d="M145,135 L135,150 L145,150 L135,165" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M155,135 L165,150 L155,150 L165,165" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

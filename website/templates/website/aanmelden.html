@@ -1,0 +1,198 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="aanmeldproces">
+    <div class="container">
+        <div class="section-title">
+            <h1>Aanmelden bij VerlichteEnergie</h1>
+            <p>Word lid van onze duurzame energiegemeenschap</p>
+        </div>
+
+        <div class="steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-title">Aanmelding</div>
+                <p>Vul het aanmeldformulier in</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Bevestiging</div>
+                <p>Ontvang een bevestigingsmail</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Tibber-koppeling</div>
+                <p>Koppel uw Tibber-account</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Lidmaatschap</div>
+                <p>Uw lidmaatschap is actief</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <h3>Informatie over het lidmaatschap</h3>
+            <p>Het lidmaatschap van VerlichteEnergie staat open voor alle bewoners en gebouweigenaren in en rondom Sidhadorp, Lelystad.</p>
+            <ul>
+                <li>Gezamenlijke inkoop van zonnepanelen</li>
+                <li>Deelname aan de energiedeelgemeenschap</li>
+                <li>Ondersteuning bij subsidieaanvragen</li>
+                <li>Toegang tot kennis en expertise</li>
+                <li>Toekomstige batterijopslag-projecten</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <form id="registrationForm" method="POST" action="{% url 'members:register' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">E-mailadres *</label>
+                    <input type="email" class="form-control" id="email" name="email" required 
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Naam *</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="street">Straat *</label>
+                        <input type="text" class="form-control" id="street" name="street" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="house_number">Huisnummer *</label>
+                        <input type="text" class="form-control" id="house_number" name="house_number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="postal_code">Postcode *</label>
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" 
+                               required pattern="[1-9][0-9]{3}\s?[A-Z]{2}">
+                        <div class="invalid-feedback">Voer een geldige postcode in (1234 AB)</div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="city">Plaats *</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefoonnummer</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="property_type">Type woning/gebouw *</label>
+                    <select class="form-control" id="property_type" name="property_type" required>
+                        <option value="">Selecteer type...</option>
+                        <option value="apartment">Appartement</option>
+                        <option value="terraced">Rijtjeshuis</option>
+                        <option value="semi_detached">2-onder-1-kap</option>
+                        <option value="detached">Vrijstaand</option>
+                        <option value="business">Bedrijfspand</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Ik ben geïnteresseerd in: *</label>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="interest_solar" name="interest_solar">
+                        <label class="form-check-label" for="interest_solar">Zonnepanelen</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="interest_battery" name="interest_battery">
+                        <label class="form-check-label" for="interest_battery">Thuisbatterij</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="interest_sharing" name="interest_sharing">
+                        <label class="form-check-label" for="interest_sharing">Energiedeling</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="interest_charger" name="interest_charger">
+                        <label class="form-check-label" for="interest_charger">Laadpaal</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="interest_info_only" name="interest_info_only">
+                        <label class="form-check-label" for="interest_info_only">Alleen informatie ontvangen</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Opmerkingen</label>
+                    <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
+                        <label class="form-check-label" for="newsletter">
+                            Ja, ik wil de nieuwsbrief ontvangen
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" id="submitButton">
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        <span class="button-text">Aanmelden</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const button = document.getElementById('submitButton');
+    const spinner = button.querySelector('.spinner-border');
+    const buttonText = button.querySelector('.button-text');
+    
+    // Show loading state
+    button.disabled = true;
+    spinner.classList.remove('d-none');
+    buttonText.textContent = 'Bezig met aanmelden...';
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+        const response = await fetch('{% url "members:register" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert('Aanmelding succesvol! Controleer uw e-mail voor de bevestigingslink.');
+            this.reset();
+        } else {
+            alert('Er is een fout opgetreden: ' + result.message);
+        }
+    } catch (error) {
+        alert('Er is een fout opgetreden bij het verzenden van het formulier.');
+        console.error('Error:', error);
+    } finally {
+        // Reset button state
+        button.disabled = false;
+        spinner.classList.add('d-none');
+        buttonText.textContent = 'Aanmelden';
+    }
+});
+</script>
+{% endblock %}

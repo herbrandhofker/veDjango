@@ -1,0 +1,44 @@
+<!-- website/templates/website/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerlichteEnergie - Sidhadorp Lelystad</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>VerlichteEnergie</h1>
+            <p>Duurzame energie voor Sidhadorp Lelystad</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#project">Het project</a></li>
+            <li><a href="#voordelen">Voordelen</a></li>
+            <li><a href="#kosten">Kosten & Opbrengsten</a></li>
+            <li><a href="#technologie">Technologie</a></li>
+            <li><a href="#tijdlijn">Tijdlijn</a></li>
+            <li><a href="{% url 'subsidies' %}">Subsidies</a></li>
+            <li><a href="{% url 'energiedeling' %}">Energiedeling</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="{% url 'aanmelden' %}">Aanmelden</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Rest van je HTML-inhoud -->
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 VerlichteEnergie - Duurzame energie voor Sidhadorp Lelystad</p>
+            <p>In samenwerking met Wooncoöperatie "Harmonisch Wonen"</p>
+            <p>Website ontwikkeld door Kafka Academy B.V. - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+</body>
+</html>

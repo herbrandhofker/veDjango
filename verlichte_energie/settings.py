@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'members',
+    'website'
 ]
 
 MIDDLEWARE = [
@@ -162,4 +163,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # verlichte_energie/settings.py
 # Voeg toe onderaan het bestand
-DEFAULT_FROM_EMAIL = 'VerlichteEnergie <noreply@verlichte-energie.nl>'
+DEFAULT_FROM_EMAIL = 'VerlichteEnergie herbrand.hofker@gmail.com>'
+
+# In verlichte_energie/settings.py
+
+# Voeg dit toe aan de bestaande instellingen
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
